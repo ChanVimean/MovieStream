@@ -1,5 +1,6 @@
 import Card from "./src/components/Card.js"
 import FetchAPI from "./src/utils/FetchAPI.js"
+import FilterItems from "./src/utils/FilterItems.js"
 import Render from "./src/utils/Render.js"
 
 
@@ -16,9 +17,29 @@ const InitializeApp = async () => {
     }
 
     // 3. Render App
-    const title = movieList.map(movie => movie.title)
-    const titleStyle = "text-blue-500 bg-blue-200"
-    Render(Card({ items: title, style: titleStyle}), 'app1')
+    console.log(FilterItems(movieList, 'genre', ['Spy']))
+
+    const movieGenres = FilterItems(movieList, 'genre', ['Adventure'])
+
+    const ApplyFor = (movies) => {
+      if (!movies.length) return '<p>No Movies Found</p>'
+      return `
+        <ul>
+          ${movies.map(movie => `
+              <li>
+                <h3>${movie.title}</h3>
+                <p>Genres: ${movie.genre.join(', ')}</p>
+              </li>
+            `).join('')
+            }
+        </ul>
+      `
+    }
+
+    const movieListHTML = ApplyFor(movieGenres)
+    Render('test', movieListHTML)
+
+
 
 
   } catch (error) {
