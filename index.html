@@ -8,9 +8,57 @@
 </head>
 <body>
 
-  <ul id="app1"></ul>
-
-  <nav></nav>
+  <nav class="container-fluid font-poppins">
+    <div class="row">
+      <!-- Left Nav: Hidden on mobile, visible on lg -->
+      <div class="d-flex col-12 col-lg-6 bg-blue-900 d-none-mobile d-lg-block">
+        <div class="d-flex align-center"> 
+          <!-- Image Section -->
+          <div style="height: 60px; width: 100px; background-color: yellowgreen;">
+            <img class="nav-logo" src="" alt="logo">
+          </div>
+  
+          <!-- List Section -->
+          <ul class="d-flex w-50 justify-around">
+            <li class="nav-item" style="list-style: none;">
+              <a href="#" class="fs-4">Categories</a>
+              <!-- Dropdown Menu -->
+              <ul class="dropdown-menu mt-1 transition-2 rounded bg-blue-800">
+                <li class="nav-item" style="list-style: none;">
+                  <a href="#">Action</a>
+                </li>
+                <li class="nav-item" style="list-style: none;">
+                  <a href="#">Drama</a>
+                </li>
+                <li class="nav-item" style="list-style: none;">
+                  <a href="#">Comedy</a>
+                </li>
+                <li class="nav-item" style="list-style: none;">
+                  <a href="#">Horror</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item" style="list-style: none;">
+              <a href="#" class="fs-4">Movies</a>
+            </li>
+            <li class="nav-item" style="list-style: none;">
+              <a href="#" class="fs-4">Series</a>
+            </li>
+            <li class="nav-item" style="list-style: none;">
+              <a href="#" class="fs-4">TV Shows</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Right Nav: Always visible and takes full width on mobile -->
+      <div class="col-12 col-lg-6 bg-blue-500 nav-right">
+        <div class="row"></div>
+      </div>
+    </div>
+  </nav>
+  
+  
 
   <main></main>
 
