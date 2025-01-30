@@ -83,6 +83,7 @@
   align-items: center;
   padding: 0 20px;
   position: sticky;
+  z-index: 5;
 }
 
 /* === [ Left Section: Logo & Menu ] === */
@@ -133,21 +134,20 @@
 /* === [ Dropdown Menu Styling ] === */
 .dropdown-menu {
   position: absolute;
+  z-index: 99;
   top: 100%;
   left: 0;
   background-color: var(--blue-800); /* Solid background */
-  list-style: none;
-  padding: 10px 0;
+  list-style:x 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
   margin: 0;
   min-width: 150px;
   display: none;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  box-shadow: 0p
 }
-
-.dropdown-menu li {
+/* .dropdown-menu li {
   padding: 5px 15px;
-}
+} */
 
 .dropdown-menu li a {
   color: white;
@@ -327,4 +327,52 @@
 .bottom-footer a:hover {
   color: var(--blue-500);
   transition: 0.15s ease-in-out;
+}
+
+/********************************* [ Carousel ] *********************************/
+.carousel {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 40px 0;
+  background-color: var(--blue-950);
+}
+
+.carousel h2 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: start;
+  padding-left: 20px;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-track li {
+  min-width: 150px;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
 }

@@ -1,3 +1,4 @@
+import Carousel from "./src/utils/Carousel.js"
 import FetchAPI from "./src/utils/FetchAPI.js"
 import FilterItems from "./src/utils/FilterItems.js"
 import Render from "./src/utils/Render.js"
@@ -14,9 +15,11 @@ const InitializeApp = async () => {
     }
 
     //* Render App
-
-
-    const movieGenres = FilterItems(movieList, 'genre', ['Adventure'])
+    
+    
+    const movieGenres = FilterItems(movieList, 'genre', ['Action'])
+    
+    Render('action', Carousel(movieGenres))
 
     const ApplyFor = (movies) => {
       if (!movies.length) return '<p>No Movies Found</p>'
