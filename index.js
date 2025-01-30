@@ -1,4 +1,3 @@
-import Card from "./src/components/Card.js"
 import FetchAPI from "./src/utils/FetchAPI.js"
 import FilterItems from "./src/utils/FilterItems.js"
 import Render from "./src/utils/Render.js"
@@ -7,17 +6,15 @@ import Render from "./src/utils/Render.js"
 const InitializeApp = async () => {
 
   try {
-    // 1. Fetch Data
+    //* Fetch Data & Check list of ha Data
     const movieList = await FetchAPI()
-
-    // 2. Check list if has Data
     if (!movieList || movieList.length === 0) {
       console.error("Movie List has no Data")
       return
     }
 
-    // 3. Render App
-    console.log(FilterItems(movieList, 'genre', ['Spy']))
+    //* Render App
+
 
     const movieGenres = FilterItems(movieList, 'genre', ['Adventure'])
 
