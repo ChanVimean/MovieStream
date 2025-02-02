@@ -376,3 +376,22 @@
   background-position: center;
   border-radius: 6px;
 }
+
+.btn-nav {
+  margin: 0 10px;
+  padding: 0 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 3rem;
+  color: var(--blue-100);
+  background: transparent;
+  transition: 0.15s ease;
+  outline: none !important;
+}
+
+.btn-nav:hover {
+  color: var(--blue-400);
+}
+.btn-nav:active {
+  color: var(--blue-100);
+}

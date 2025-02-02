@@ -15,31 +15,49 @@ const InitializeApp = async () => {
     }
 
     //* Render App
-    
-    
-    const movieGenres = FilterItems(movieList, 'genre', ['Action'])
-    
-    Render('action', Carousel(movieGenres))
 
-    const ApplyFor = (movies) => {
-      if (!movies.length) return '<p>No Movies Found</p>'
-      return `
-        <ul>
-          ${movies.map(movie => `
-              <li>
-                <h3>${movie.title}</h3>
-                <p>Genres: ${movie.genre.join(', ')}</p>
-              </li>
-            `).join('')
-            }
-        </ul>
-      `
-    }
+    // Hero Section
+    // Trending
+    // New Releases
+    // Continue
+    // Up Coming
+    // Top Anime
+    // Top Donghua
+    // Animation
 
-    const movieListHTML = ApplyFor(movieGenres)
-    Render('test', movieListHTML)
+    // Action
+    const genreAction = FilterItems(movieList, 'genre', ['Action'])
+    Render('newReleases', Carousel(genreAction, 'Action'))
 
+    // Comedy
+    const genreComedy = FilterItems(movieList, 'genre', ['Comedy'])
+    Render('comedy', Carousel(genreComedy, 'Comedy'))
 
+    // Fantasy
+    const genreFantasy = FilterItems(movieList, 'genre', ['Fantasy'])
+    Render('fantasy', Carousel(genreFantasy, 'Fantasy'))
+
+    // Sci-Fi & Supernatural
+    const genreSciFi = FilterItems(movieList, 'genre', ['Sci-Fi', 'Supernatural'])
+    Render('scifiSupernatural', Carousel(genreSciFi, 'Sci-Fi & Supernatural'))
+
+    // Romance
+
+    // Mystery & Spy
+    const genreMysterySpy = FilterItems(movieList, 'genre', ['Mystery', 'Spy'])
+    Render('mysterySpy', Carousel(genreMysterySpy, 'Mystery & Spy'))
+
+    // Adventure
+    const genreAdventure = FilterItems(movieList, 'genre', ['Adventure'])
+    Render('adventure', Carousel(genreAdventure, 'Adventure'))
+
+    // MartialArts
+    const genreMartialArts = FilterItems(movieList, 'genre', ['Martial Arts'])
+    Render('adventure', Carousel(genreMartialArts, 'Martial Arts'))
+
+    // Drama & Thriller
+    const genreDramaThriller = FilterItems(movieList, 'genre', ['Drama', 'Thiller'])
+    Render('adventure', Carousel(genreDramaThriller, 'Drama & Thriller'))
 
 
   } catch (error) {
