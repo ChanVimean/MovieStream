@@ -1,7 +1,10 @@
-import Carousel from "./src/utils/Carousel.js"
+import Hero from "./src/components/Hero.js"
+import Carousel from "./src/components/Carousel.js"
 import FetchAPI from "./src/utils/FetchAPI.js"
 import FilterItems from "./src/utils/FilterItems.js"
 import Render from "./src/utils/Render.js"
+import NavBar from "./src/components/NavBar.js"
+import Footer from "./src/components/Footer.js"
 
 
 const InitializeApp = async () => {
@@ -16,7 +19,12 @@ const InitializeApp = async () => {
 
     //* Render App
 
+    //* Navigation
+    Render('navbar', NavBar())
+
+
     // Hero Section
+    Render('hero', Hero(movieList))
     // Trending
     // New Releases
     // Continue
@@ -27,7 +35,7 @@ const InitializeApp = async () => {
 
     // Action
     const genreAction = FilterItems(movieList, 'genre', ['Action'])
-    Render('newReleases', Carousel(genreAction, 'Action'))
+    Render('action', Carousel(genreAction, 'Action'))
 
     // Comedy
     const genreComedy = FilterItems(movieList, 'genre', ['Comedy'])
@@ -38,8 +46,8 @@ const InitializeApp = async () => {
     Render('fantasy', Carousel(genreFantasy, 'Fantasy'))
 
     // Sci-Fi & Supernatural
-    const genreSciFi = FilterItems(movieList, 'genre', ['Sci-Fi', 'Supernatural'])
-    Render('scifiSupernatural', Carousel(genreSciFi, 'Sci-Fi & Supernatural'))
+    const genreSciFiSuper = FilterItems(movieList, 'genre', ['Sci-Fi', 'Supernatural'])
+    Render('scifiSupernatural', Carousel(genreSciFiSuper, 'Sci-Fi & Supernatural'))
 
     // Romance
 
@@ -59,6 +67,10 @@ const InitializeApp = async () => {
     const genreDramaThriller = FilterItems(movieList, 'genre', ['Drama', 'Thiller'])
     Render('adventure', Carousel(genreDramaThriller, 'Drama & Thriller'))
 
+
+
+    //* Footer
+    Render('footer', Footer())
 
   } catch (error) {
     console.error("Failed to initialize: ", error)

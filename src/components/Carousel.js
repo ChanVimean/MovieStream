@@ -38,7 +38,7 @@ const Carousel = (movies, type) => {
             <ul class="carousel-track">
                 ${topRate.map(movie => `
                     <li style="background-image: url('${movie.thumbnail}');"></li>
-                `).join("")}
+                `).join('')}
             </ul>
             <button class="btn-nav" id="next">&#10095;</button>
         </div>

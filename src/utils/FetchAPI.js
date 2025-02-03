@@ -10,14 +10,14 @@ const FetchAPI = async () => {
 
     // If has Data, GET it and store in Array
     if (storeData) {
-      console.log("Data loaded from Local Storage")
+      // console.log("Data loaded from Local Storage")
       movieList = JSON.parse(storeData) || []
     }
     
     // 2. If Data is empty
     // Fetch and store in Local Storage then set to Array
     if (!Array.isArray(movieList) || movieList.length === 0) {
-      console.log("Fetching data from API...")
+      // console.log("Fetching data from API...")
       const res = await fetch('https://json-movies-6gr9.onrender.com/movies')
       const data = await res.json()
 
