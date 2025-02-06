@@ -138,12 +138,13 @@
   top: 100%;
   left: 0;
   background-color: var(--blue-800); /* Solid background */
-  list-style:x 4px 6px rgba(0, 0, 0, 0.2);
+  list-style: none;
   border-radius: 5px;
   margin: 0;
   min-width: 150px;
   display: none;
-  box-shadow: 0p
+  box-shadow: 0px;
+  overflow: hidden;
 }
 /* .dropdown-menu li {
   padding: 5px 15px;
@@ -420,11 +421,11 @@
 /* Track (for sliding) */
 .hero-track {
   display: flex;
-  overflow-x: auto;
+  overflow: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  width: 100%;
+  width: 400%;
   height: 100%;
   transition: transform 0.5s ease-in-out;
 }
@@ -439,6 +440,7 @@
   box-sizing: border-box;
   /* width: 100%; */
   scroll-snap-align: start;
+  position: relative;
 }
 
 /* Background Image */
@@ -446,7 +448,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   z-index: 0;
@@ -545,3 +547,55 @@
 .hero-slide.active {
   opacity: 1;
 }
+
+/********************************* [ Trending ] *********************************/
+
+.automation {
+  width: 100%;
+  padding: 20px 0;
+  background: var(--blue-950);
+  overflow: hidden;
+}
+
+.automation h2 {
+  font-size: 1.8rem;
+  color: var(--blue-100);
+  margin-left: 20px;
+}
+
+.automation-container {
+  position: relative;
+  width: 95%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.automation-track {
+  display: flex;
+  gap: 10px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.automation-track li {
+  flex: 0 0 calc((100% / 6) - (10px * (5 / 6))); /* Show 6 items at once */
+  list-style: none;
+  height: 175px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.automation-track li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.automation-track img:hover {
+  transform: scale(1.1);
+}
+

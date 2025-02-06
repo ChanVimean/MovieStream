@@ -5,6 +5,7 @@ import FilterItems from "./src/utils/FilterItems.js"
 import Render from "./src/utils/Render.js"
 import NavBar from "./src/components/NavBar.js"
 import Footer from "./src/components/Footer.js"
+import Trending from "./src/components/Trending.js"
 
 
 const InitializeApp = async () => {
@@ -25,7 +26,10 @@ const InitializeApp = async () => {
 
     // Hero Section
     Render('hero', Hero(movieList))
+
     // Trending
+    Render('trending', Trending(movieList, "Trending", 15))
+
     // New Releases
     // Continue
     // Up Coming

@@ -1,45 +1,49 @@
+import useState from "../utils/useState.js";
+
 const Hero = (movies) => {
-  const topRated = movies
-    .sort((a, b) => b.rating - a.rating)
-    .slice(0, 4); // Get top 4 movies
+  const topRated = movies.sort((a, b) => b.rating - a.rating).slice(0, 4);
+  const [getCurrentIndex, setCurrentIndex, subscribe] = useState(0);
 
-  // Function for auto sliding
   const startAutoSlide = () => {
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.dot');
-    const track = document.querySelector('.hero-track');
-    let currentIndex = 0;
+    requestAnimationFrame(() => {
+      const track = document.querySelector(".hero-track");
+      const slides = document.querySelectorAll(".hero-slide");
+      const dots = document.querySelectorAll(".dot");
 
-    // Function to go to the next slide
-    const goToNextSlide = () => {
-      // Remove 'active' class from all slides and dots
-      slides.forEach(slide => slide.classList.remove('active'));
-      dots.forEach(dot => dot.classList.remove('active'));
+      if (!track || slides.length === 0 || dots.length === 0) {
+        console.warn("Carousel elements not found. Retrying...");
+        return;
+      }
 
-      // Update to the next slide (loop back to start)
-      currentIndex = (currentIndex + 1) % slides.length;
+      track.style.width = `${slides.length * 100}%`; // Ensure track fits all slides
 
-      // Add 'active' class to the next slide and dot
-      slides[currentIndex].classList.add('active');
-      dots[currentIndex].classList.add('active');
+      const updateSlide = (index) => {
+        slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+        dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+        track.style.transform = `translateX(-${100 * index}%)`;
+      };
 
-      // Move the track to the next slide by using transform
-      track.style.transform = `translateX(-${100 * currentIndex}%)`;
-    };
+      subscribe(updateSlide); // Ensure the UI updates with state changes
 
-    // Auto slide every 3 seconds
-    setInterval(goToNextSlide, 2000);
+      setInterval(() => {
+        const nextIndex = (getCurrentIndex() + 1) % slides.length;
+        setCurrentIndex(nextIndex);
+      }, 2000);
+    });
   };
 
-  // Ensure auto slide logic runs after the component is rendered
-  setTimeout(startAutoSlide, 0); // Delay it by a bit to make sure the DOM is ready
+  setTimeout(startAutoSlide, 500); // Delay to ensure DOM is loaded
+
+  console.log(document.querySelectorAll('.hero-slide'));
 
   return `
     <div class="hero">
       <div class="hero-container">
         <ul class="hero-track">
-          ${topRated.map((movie, index) => `
-            <li class="hero-slide ${index === 0 ? 'active' : ''}">
+          ${topRated
+            .map(
+              (movie, index) => `
+            <li class="hero-slide ${index === 0 ? "active" : ""}">
               <img src="${movie.cover}" alt="Movie Poster">
               <div class="hero-content">
                 <h2>${movie.title}</h2>
@@ -60,16 +64,20 @@ const Hero = (movies) => {
                 </div>
               </div>
             </li>
-          `).join('')}
+          `
+            )
+            .join("")}
         </ul>
 
         <!-- Navigation -->
         <div class="dot-container">
           ${topRated
-            .map((_, index) => `
-              <div class="dot ${index === 0 ? 'active' : ''}"></div>
-            `).join('')
-          }
+            .map(
+              (_, index) => `
+            <div class="dot ${index === 0 ? "active" : ""}" data-index="${index}"></div>
+          `
+            )
+            .join("")}
         </div>
       </div>
     </div>
