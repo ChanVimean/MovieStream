@@ -1,5 +1,39 @@
-
 const LocalStorage = 'moviesData'
+
+const validateMovies = async (movies) => {
+  return Promise.all(movies.map(async (movie, index) => {
+    const errors = []
+
+    // Check required fields
+    if (!movie.title) errors.push("Missing title")
+    if (!movie.cover) errors.push("Missing cover image")
+    if (!movie.thumbnail) errors.push("Missing thumbnail")
+    
+    // Validate URLs
+    const checkImage = async (url) => {
+      try {
+        const response = await fetch(url, { method: "HEAD" }) 
+        return response.ok // true if image exists, false if 404
+      } catch {
+        return false
+      }
+    }
+
+    if (movie.cover && !(await checkImage(movie.cover))) {
+      errors.push("Cover image is broken")
+    }
+    if (movie.thumbnail && !(await checkImage(movie.thumbnail))) {
+      errors.push("Thumbnail image is broken")
+    }
+
+    // Log any errors for this movie
+    if (errors.length > 0) {
+      console.error(`Error in movie at index ${index}:`, errors, movie)
+    }
+
+    return { ...movie, errors }
+  }))
+}
 
 const FetchAPI = async () => {
   try {
@@ -23,8 +57,8 @@ const FetchAPI = async () => {
 
       // Ensure fetched data is an array
       if (Array.isArray(data)) {
-        localStorage.setItem(LocalStorage, JSON.stringify(data))
-        movieList = data
+        movieList = await validateMovies(data) // 🔥 Check images before saving
+        localStorage.setItem(LocalStorage, JSON.stringify(movieList))
       } else {
         console.error("Fetched data is not an array.")
         return []
