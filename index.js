@@ -61,6 +61,10 @@ const InitializeApp = async () => {
     const genreComedy = FilterItems(movieList, 'genre', ['Comedy'])
     Render('comedy', Carousel(genreComedy, 'Comedy'))
 
+    // Romance
+    const genreRomance = FilterItems(movieList, 'genre', ['Romance'])
+    Render('romance', Carousel(genreRomance, 'Romance'))
+
     // Fantasy
     const genreFantasy = FilterItems(movieList, 'genre', ['Fantasy'])
     Render('fantasy', Carousel(genreFantasy, 'Fantasy'))
