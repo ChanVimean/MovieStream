@@ -53,6 +53,10 @@ const InitializeApp = async () => {
     const genreAction = FilterItems(movieList, 'genre', ['Action'])
     Render('action', Carousel(genreAction, 'Action'))
 
+    // MartialArts
+    const genreMartialArts = FilterItems(movieList, 'genre', ['Martial Arts'])
+    Render('martialArts', Carousel(genreMartialArts, 'Martial Arts'))
+
     // Comedy
     const genreComedy = FilterItems(movieList, 'genre', ['Comedy'])
     Render('comedy', Carousel(genreComedy, 'Comedy'))
@@ -65,8 +69,6 @@ const InitializeApp = async () => {
     const genreSciFiSuper = FilterItems(movieList, 'genre', ['Sci-Fi', 'Supernatural'])
     Render('scifiSupernatural', Carousel(genreSciFiSuper, 'Sci-Fi & Supernatural'))
 
-    // Romance
-
     // Mystery & Spy
     const genreMysterySpy = FilterItems(movieList, 'genre', ['Mystery', 'Spy'])
     Render('mysterySpy', Carousel(genreMysterySpy, 'Mystery & Spy'))
@@ -75,13 +77,9 @@ const InitializeApp = async () => {
     const genreAdventure = FilterItems(movieList, 'genre', ['Adventure'])
     Render('adventure', Carousel(genreAdventure, 'Adventure'))
 
-    // MartialArts
-    const genreMartialArts = FilterItems(movieList, 'genre', ['Martial Arts'])
-    Render('adventure', Carousel(genreMartialArts, 'Martial Arts'))
-
     // Drama & Thriller
     const genreDramaThriller = FilterItems(movieList, 'genre', ['Drama', 'Thiller'])
-    Render('adventure', Carousel(genreDramaThriller, 'Drama & Thriller'))
+    Render('dramaThriller', Carousel(genreDramaThriller, 'Drama & Thriller'))
 
 
 
