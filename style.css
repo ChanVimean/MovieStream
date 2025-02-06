@@ -421,25 +421,20 @@
 /* Track (for sliding) */
 .hero-track {
   display: flex;
-  overflow: hidden;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  width: 400%;
-  height: 100%;
   transition: transform 0.5s ease-in-out;
+  width: 100%; /* ✅ Will be updated dynamically in JS */
+  height: 100%;
 }
 /* For Chrome, Safari, and Edge */
 .hero-track::-webkit-scrollbar { display: none; }
 
 /* Individual Slide */
 .hero-slide {
-  flex: 0 0 auto;
+  flex: 0 0 100%; /* ✅ Each slide takes full width */
+  width: 100%;
+  height: 100%;
   list-style: none;
-  min-width: 100%;
   box-sizing: border-box;
-  /* width: 100%; */
-  scroll-snap-align: start;
   position: relative;
 }
 
@@ -453,7 +448,6 @@
   left: 0;
   z-index: 0;
   filter: brightness(60%);
-  background-color: red;
 }
 
 /* Hero Content (Bottom Left) */
@@ -463,8 +457,8 @@
   text-align: left;
   z-index: 2;
   position: absolute;
-  bottom: 70px; /* Pushes content up slightly */
-  left: 80px; /* Moves content away from the left edge */
+  bottom: 70px;
+  left: 80px;
 }
 
 /* Title */

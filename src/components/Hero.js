@@ -1,46 +1,66 @@
-import useState from "../utils/useState.js";
+import useState from '../utils/useState.js'
 
 const Hero = (movies) => {
-  const topRated = movies.sort((a, b) => b.rating - a.rating).slice(0, 4);
-  const [getCurrentIndex, setCurrentIndex, subscribe] = useState(0);
+  const topRated = movies.sort((a, b) => b.rating - a.rating).slice(0, 4)
+
+  // Dynamically extend the movies array based on the index
+  let extendedMovies = [...topRated] // Initialize with double array for smoother looping
+
+  const [getCurrentIndex, setCurrentIndex, subscribe] = useState(0)
 
   const startAutoSlide = () => {
     requestAnimationFrame(() => {
-      const track = document.querySelector(".hero-track");
-      const slides = document.querySelectorAll(".hero-slide");
-      const dots = document.querySelectorAll(".dot");
+      const track = document.querySelector(".hero-track")
+      const slides = document.querySelectorAll(".hero-slide")
+      const dots = document.querySelectorAll(".dot")
 
       if (!track || slides.length === 0 || dots.length === 0) {
-        console.warn("Carousel elements not found. Retrying...");
-        return;
+        console.warn("Carousel elements not found. Retrying...")
+        return
       }
 
-      track.style.width = `${slides.length * 100}%`; // Ensure track fits all slides
+      // Dynamically set track width to fit all slides
+      track.style.width = `${slides.length * 100}%`
+      slides.forEach((slide) => (slide.style.width = "100%"))
 
-      const updateSlide = (index) => {
-        slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
-        dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
-        track.style.transform = `translateX(-${100 * index}%)`;
-      };
+      // Function to update slides
+      const updateSlide = (index, instant = false) => {
+        if (instant) track.style.transition = "none" // Instant reset
+        else track.style.transition = "transform 0.5s ease-in-out"
 
-      subscribe(updateSlide); // Ensure the UI updates with state changes
+        track.style.transform = `translateX(-${100 * index}%)`
+
+        dots.forEach((dot, i) => dot.classList.toggle("active", i === index % topRated.length))
+      }
+
+      subscribe(updateSlide)
 
       setInterval(() => {
-        const nextIndex = (getCurrentIndex() + 1) % slides.length;
-        setCurrentIndex(nextIndex);
-      }, 2000);
-    });
-  };
+        let nextIndex = getCurrentIndex() + 1
 
-  setTimeout(startAutoSlide, 500); // Delay to ensure DOM is loaded
+        // Use ternary to dynamically extend the array once we reach the end
+        extendedMovies = nextIndex >= topRated.length
+          ? [...topRated] // Extend the array if we've reached the end
+          : extendedMovies
 
-  console.log(document.querySelectorAll('.hero-slide'));
+        // Reset index when the loop reaches the end of the extendedMovies array
+        if (nextIndex >= extendedMovies.length) {
+          nextIndex = 0 // Reset to 0 when we've looped through all slides
+        }
+
+        setCurrentIndex(nextIndex)
+        updateSlide(nextIndex)
+      }, 3000)
+    })
+  }
+
+  setTimeout(startAutoSlide, 500) // Delay ensures DOM is ready
 
   return `
     <div class="hero">
       <div class="hero-container">
         <ul class="hero-track">
-          ${topRated
+          ${extendedMovies
             .map(
               (movie, index) => `
             <li class="hero-slide ${index === 0 ? "active" : ""}">
@@ -81,7 +101,7 @@ const Hero = (movies) => {
         </div>
       </div>
     </div>
-  `;
-};
+  `
+}
 
-export default Hero;
+export default Hero
