@@ -1,10 +1,9 @@
 import useState from '../utils/useState.js'
 
 const Hero = (movies) => {
-  const topRated = movies.sort((a, b) => b.rating - a.rating).slice(0, 4)
+  const topRated = movies.sort((a, b) => b.rating - a.rating).slice(0, 5)
 
-  // Dynamically extend the movies array based on the index
-  let extendedMovies = [...topRated] // Initialize with double array for smoother looping
+  let extendedMovies = [...topRated]
 
   const [getCurrentIndex, setCurrentIndex, subscribe] = useState(0)
 
@@ -14,10 +13,7 @@ const Hero = (movies) => {
       const slides = document.querySelectorAll(".hero-slide")
       const dots = document.querySelectorAll(".dot")
 
-      if (!track || slides.length === 0 || dots.length === 0) {
-        console.warn("Carousel elements not found. Retrying...")
-        return
-      }
+      if (!track || slides.length === 0 || dots.length === 0) return console.warn("Carousel elements not found. Retrying...")
 
       // Dynamically set track width to fit all slides
       track.style.width = `${slides.length * 100}%`
@@ -60,9 +56,7 @@ const Hero = (movies) => {
     <div class="hero">
       <div class="hero-container">
         <ul class="hero-track">
-          ${extendedMovies
-            .map(
-              (movie, index) => `
+          ${extendedMovies.map((movie, index) => `
             <li class="hero-slide ${index === 0 ? "active" : ""}">
               <img src="${movie.cover}" alt="Movie Poster">
               <div class="hero-content">
@@ -84,20 +78,15 @@ const Hero = (movies) => {
                 </div>
               </div>
             </li>
-          `
-            )
-            .join("")}
+          `).join("")}
         </ul>
 
         <!-- Navigation -->
         <div class="dot-container">
-          ${topRated
-            .map(
-              (_, index) => `
-            <div class="dot ${index === 0 ? "active" : ""}" data-index="${index}"></div>
-          `
-            )
-            .join("")}
+          ${topRated.map(
+            (_, index) => `
+              <div class="dot ${index === 0 ? "active" : ""}" data-index="${index}"></div>
+            `).join("")}
         </div>
       </div>
     </div>
