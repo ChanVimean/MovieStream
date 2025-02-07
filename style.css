@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
 /** Global  */
 *{
@@ -593,3 +594,227 @@
   transform: scale(1.1);
 }
 
+/********************************* [ Model ] *********************************/
+
+/* Fullscreen modal container */
+.model {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+  transition: opacity 0.3s ease-in-out, visibility 0.3s;
+}
+
+/* Dark background overlay */
+.model .dark-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px); /* Blur effect */
+}
+
+.model .container {
+  width: 60%;
+  height: 80%;
+  background: var(--blue-900);
+  border-radius: 10px;
+  text-align: center;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/** Top Row **/
+.model .top-row {
+  width: 100%;
+  height: 60%;
+  display: flex;
+}
+
+.model .top-row .content {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.model .top-row iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.model .top-row .season {
+  width: 30%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--blue-900);
+}
+
+.model .season header {
+  width: 100%;
+  height: 15%;
+  background-color: var(--blue-900);
+  box-shadow: 0 2px 2px var(--blue-950);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.model .season header .active {
+  font-size: 1.5rem;
+  color: var(--blue-900);
+  background-color: var(--blue-100);
+  padding: 5px 15px;
+  border-radius: 50px;
+}
+
+.model .season header h2 {
+  font-size: 1.5rem;
+  color: var(--blue-100);
+  border: 3px solid var(--blue-100);
+  padding: 5px 15px;
+  border-radius: 50px;
+  flex-shrink: 0;
+}
+
+.model .season main {
+  padding: 20px 10px;
+  width: 100%;
+  height: 85%;
+  text-align: start;
+  overflow: hidden;
+}
+
+.model .season main a {
+  font-size: 1.25rem;
+  color: var(--blue-100);
+  border: 2px solid var(--blue-200);
+  background-color: var(--blue-700);
+  padding: 5px 15px;
+  text-decoration: none;
+  border-radius: 25px;
+  flex-shrink: 0;
+  margin-bottom: 15px;
+  transition: 0.5s ease;
+}
+
+.model .season main a:hover {
+  color: var(--blue-200);
+  background-color: var(--blue-800);
+}
+
+/** Bottom Row **/
+
+/** Description **/
+.model .bottom-row {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  color: var(--blue-100);
+}
+
+.model .bottom-row .description {
+  width: 70%;
+  height: 100%;
+  background-color: var(--blue-900);
+  text-align: start;
+  padding: 10px;
+}
+
+.model .bottom-row .description h2 {
+  color: var(--blue-100);
+  margin-bottom: 10px;
+}
+
+.model .bottom-row .description .status-container {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--blue-950);
+}
+
+.model .bottom-row .description .reaction-container {
+  display: flex;
+  align-items: center;
+}
+
+.model .bottom-row .description .reaction {
+  display: flex;
+  gap: 10px;
+}
+
+.model .bottom-row .description .reaction-container {
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  background-color: var(--blue-700);
+  border: none;
+}
+
+.model .bottom-row .description .reaction button {
+  font-size: 1.25rem;
+  background-color: var(--blue-700);
+  border: none;
+  border-radius: 50px;
+  padding: 5px 15px;
+  color: var(--blue-100);
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+.model .bottom-row .description .reaction button:hover {
+  color: var(--blue-200);
+}
+
+.model .bottom-row .description .detail {
+  width: 100%;
+  margin-top: 10px;
+  position: relative;
+}
+
+.model .bottom-row .description .detail .release {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 10px;
+}
+
+/** reviews **/
+
+.model .bottom-row .reviews {
+  width: 30%;
+  height: 100%;
+}
+
+.model .bottom-row .reviews header {
+  background-color: var(--blue-700);
+  height: 15%;
+  display: flex;
+  align-items: center;
+  text-align: start;
+  padding-left: 15px;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.model .bottom-row .reviews main {
+  width: 100%;
+  height: 85%;
+  background-color: var(--blue-800);
+}

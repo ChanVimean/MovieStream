@@ -31,13 +31,13 @@ const Carousel = (movies, type) => {
   return `
     <div class="carousel" id="${uniqueId}">
         <h2>${type}</h2>
-        <div class="carousel-container">
+        <div class="carousel-container" id="model">
             <button class="btn-nav btn-prev">&#10094;</button>
             <ul class="carousel-track">
-                ${movies
-                  .sort((a, b) => b.rating - a.rating)
-                  .map(movie => `<li style="background-image: url('${movie.thumbnail}');"></li>`)
-                  .join('')}
+              ${movies
+                .sort((a, b) => b.rating - a.rating)
+                .map(movie => `<li style="background-image: url('${movie.thumbnail}');"></li>`)
+                .join('')}
             </ul>
             <button class="btn-nav btn-next">&#10095;</button>
         </div>
