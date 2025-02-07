@@ -71,10 +71,6 @@ const InitializeApp = async () => {
     const genreSciFiSuper = FilterItems(movieList, 'genre', ['Sci-Fi', 'Supernatural'])
     Render('scifiSupernatural', Carousel(genreSciFiSuper, 'Sci-Fi & Supernatural'))
 
-    // Mystery & Spy
-    const genreMysterySpy = FilterItems(movieList, 'genre', ['Mystery', 'Spy'])
-    Render('mysterySpy', Carousel(genreMysterySpy, 'Mystery & Spy'))
-
     // Adventure
     const genreAdventure = FilterItems(movieList, 'genre', ['Adventure'])
     Render('adventure', Carousel(genreAdventure, 'Adventure'))

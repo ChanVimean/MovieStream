@@ -1,7 +1,8 @@
 const Carousel = (movies, type) => {
   if (!movies.length) return `<p>No Movies Found</p>`
 
-  const uniqueId = `carousel-${type.replace(/\s+/g, '-').toLowerCase()}`
+  // Sanitize ID (removes special characters like "&", "!")
+  const uniqueId = `carousel-${type.toLowerCase().replace(/[^a-z0-9-]/g, '')}`
 
   const enableButtonScroll = () => {
     const carousel = document.querySelector(`#${uniqueId}`)
