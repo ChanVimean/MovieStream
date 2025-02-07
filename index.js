@@ -31,23 +31,21 @@ const InitializeApp = async () => {
     Render('trending', Trending(movieList, "Trending", 15))
 
     // New Releases
-    const newRelease = FilterItems(movieList, 'release', "2020")
+    const newRelease = FilterItems(movieList, 'release', 2020)
     Render('newReleases', Carousel(newRelease, "New Releases"))
 
     // Continue
     // Up Coming
 
     // Top Anime
-    const topAnime = FilterItems(movieList, 'type', ["Anime"])
+    const topAnime = FilterItems(movieList, 'type', ['Anime'])
     Render('topAnime', Carousel(topAnime, "Top Anime"))
 
+    console.log(movieList)
+    
     // Top Donghua
-    const topDonhua = FilterItems(movieList, 'type', ["Donghua"])
+    const topDonhua = FilterItems(movieList, 'type', ['Donghua'])
     Render('topDonghua', Carousel(topDonhua, "Top Donhua"))
-
-    // Animation
-    const animation = FilterItems(movieList, 'type', ["Animation"])
-    Render('animation', Carousel(animation, "Animation"))
 
     // Action
     const genreAction = FilterItems(movieList, 'genre', ['Action'])
