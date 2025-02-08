@@ -1,7 +1,5 @@
 import useState from '../utils/useState.js'
 import { showModel } from '../utils/ModelUtils.js'
-import FullScreen from './FullScreen.js'
-import Render from '../utils/Render.js'
 
 const Hero = (movies) => {
   const topRated = movies.sort((a, b) => b.rating - a.rating).slice(0, 5)
@@ -94,7 +92,7 @@ const Hero = (movies) => {
                 </div>
                 <p class="description">${movie.description}</p>
                 <div class="btn-container">
-                  <button class="watch-btn hero-btn" data-movie='${JSON.stringify(movie)}'>
+                  <button class="watch-btn hero-btn">
                     <i class="fa-solid fa-play"></i>
                     <span>Watch Now</span>
                   </button>

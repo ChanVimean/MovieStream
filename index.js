@@ -6,7 +6,6 @@ import Render from "./src/utils/Render.js"
 import NavBar from "./src/components/NavBar.js"
 import Footer from "./src/components/Footer.js"
 import Trending from "./src/components/Trending.js"
-import FullScreen from "./src/components/FullScreen.js"
 
 const InitializeApp = async () => {
 
@@ -81,14 +80,6 @@ const InitializeApp = async () => {
 
     //* Footer
     Render('footer', Footer())
-
-    //* Full Screen Mode
-    if (window.location.pathname.includes('fullscreen.html')) {
-      const params = new URLSearchParams(window.location.search)
-      const video = params.get('video')
-      if (!video) console.warn("⚠️ No video URL found in URL parameters!")
-      Render('full-screen', FullScreen(video))
-    }
 
   } catch (error) {
     console.error("Failed to initialize: ", error)
