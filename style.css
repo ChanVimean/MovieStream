@@ -674,6 +674,7 @@
   flex-wrap: nowrap;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  cursor: pointer;
 }
 
 .model .season header .active {
@@ -691,6 +692,15 @@
   padding: 5px 15px;
   border-radius: 50px;
   flex-shrink: 0;
+  transition: 0.5s ease;
+}
+
+.model .season header .active:hover {
+  background-color: var(--blue-200);
+}
+
+.model .season header .inactive:hover {
+  background-color: var(--blue-700);
 }
 
 .model .season main {
@@ -701,22 +711,32 @@
   overflow: hidden;
 }
 
-.model .season main a {
-  font-size: 1.25rem;
-  color: var(--blue-100);
+.model .season main .episode {
+  width: 90%;
   border: 2px solid var(--blue-200);
   background-color: var(--blue-700);
   padding: 5px 15px;
+  margin-bottom: 15px;
   text-decoration: none;
   border-radius: 25px;
   flex-shrink: 0;
-  margin-bottom: 15px;
   transition: 0.5s ease;
 }
 
-.model .season main a:hover {
+.model .season main a {
+  font-size: 1.25rem;
+  color: var(--blue-100);
+  text-decoration: none;
+}
+
+.model .season main .episode:hover {
   color: var(--blue-200);
   background-color: var(--blue-800);
+}
+
+.model .season main .episode:active {
+  color: var(--blue-100);
+  background-color: var(--blue-600);
 }
 
 /** Bottom Row **/
