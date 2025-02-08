@@ -2,11 +2,6 @@
 
 const Model = (movies) => {
 
-  const episode = episodes[0] // Get the first episode
-
-  document.querySelector(".episode").innerHTML = `
-    <a href="${episode.link}">Episode ${episode.episode} | Title here</a>
-  `
 
 
   return `${movies.map(movie => `
@@ -41,16 +36,16 @@ const Model = (movies) => {
           <section class="bottom-row">
 
             <div class="description">
-              <h2>Title or Episode here</h2>
+              <h2>${movie.title}</h2>
               <div class="status-container">
                 <div class="status">
                   <p>
                     <i class="fa-solid fa-film"></i>
-                    <span style="margin: 0 5px;">Series</span>
+                    <span style="margin: 0 5px;">${movie.type[0]}</span>
                     <i class="fa-regular fa-clock"></i>
-                    <span style="margin: 0 5px;">110mn</span>
+                    <span style="margin: 0 5px;">${movie.duration}mn</span>
                   </p>
-                  <p><span style="font-weight: 600;">Genres</span>: Sample, Sample, Sample</p>
+                  <p><span style="font-weight: 600;">Genres</span>: ${movie.filter(v => v.genre)}</p>
                 </div>
                 <div class="reaction">
 
@@ -79,11 +74,11 @@ const Model = (movies) => {
               </div>
               <div class="detail">
                 <p>110K Views<span style="opacity: 0.5; margin-left: 15px;">4 weeks ago</span></p>
-                <p><span style="font-weight: 600;">Director:</span> Director Name</p>
+                <p><span style="font-weight: 600;">Director/Studio:</span>${movie.studio}</p>
                 <p>Rate: 9.7</p>
-                <p>Country & Language: Japan</p>
-                <p style="margin-top: 5px;">Description here</p>
-                <p class="release">Release: 2024</p>
+                <p>Country & Language: ${movie.filter(v => v.language)}</p>
+                <p style="margin-top: 5px;">${movie.description}</p>
+                <p class="release">Release: ${movie.release}</p>
               </div>
             </div>
 
