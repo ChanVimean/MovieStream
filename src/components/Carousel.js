@@ -1,8 +1,11 @@
+import { showModel } from "../utils/ModelUtils.js"
+
 const Carousel = (movies, type) => {
   if (!movies.length) return `<p>No Movies Found</p>`
 
   // Sanitize ID (removes special characters like "&", "!")
   const uniqueId = `carousel-${type.toLowerCase().replace(/[^a-z0-9-]/g, '')}`
+
 
   const enableButtonScroll = () => {
     const carousel = document.querySelector(`#${uniqueId}`)
@@ -24,9 +27,19 @@ const Carousel = (movies, type) => {
     prevBtn.addEventListener("click", () => {
       track.scrollBy({ left: -itemWidth, behavior: "smooth" })
     })
+
+    // Click event for each movie to show the movie model
+    track.querySelectorAll("li").forEach((item, index) => {
+      item.addEventListener("click", () => {
+        showModel(movies[index]) // Pass the selected movie
+      })
+    })
+
   }
 
-  setTimeout(enableButtonScroll, 100)
+  setTimeout(enableButtonScroll, 100) // Wait for DOM to load
+  
+
 
   return `
     <div class="carousel" id="${uniqueId}">
@@ -36,7 +49,9 @@ const Carousel = (movies, type) => {
             <ul class="carousel-track">
               ${movies
                 .sort((a, b) => b.rating - a.rating)
-                .map(movie => `<li style="background-image: url('${movie.thumbnail}');"></li>`)
+                .map(movie => `
+                  <li style="background-image: url('${movie.thumbnail}');"></li>
+                `)
                 .join('')}
             </ul>
             <button class="btn-nav btn-next">&#10095;</button>

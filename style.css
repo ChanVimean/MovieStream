@@ -379,6 +379,7 @@
   border-radius: 6px;
 }
 
+
 .btn-nav {
   margin: 0 10px;
   padding: 0 5px;
@@ -609,6 +610,8 @@
   overflow: hidden;
   background: rgba(0, 0, 0, 0.7); /* Dark overlay */
   transition: opacity 0.3s ease-in-out, visibility 0.3s;
+  z-index: 9999;
+  cursor: pointer;
 }
 
 /* Dark background overlay */
@@ -616,7 +619,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(10px); /* Blur effect */
+  backdrop-filter: blur(5px); /* Blur effect */
 }
 
 .model .container {
@@ -627,7 +630,12 @@
   text-align: center;
   overflow: hidden;
   z-index: 2;
+  position: absolute;
+  z-index: 10000;
+  cursor: default;
 }
+
+/* .model  */
 
 /** Top Row **/
 .model .top-row {
@@ -643,6 +651,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
+  background-color: black;
 }
 
 .model .top-row iframe {
@@ -651,7 +661,11 @@
   border: none;
   overflow: hidden;
   object-fit: cover;
+  display: block;
 }
+
+/* Hides scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.model .top-row iframe::-webkit-scrollbar { display: none; }
 
 .model .top-row .season {
   width: 30%;
@@ -777,6 +791,7 @@
 .model .bottom-row .description .reaction {
   display: flex;
   gap: 10px;
+  height: 50px;
 }
 
 .model .bottom-row .description .reaction-container {
@@ -792,7 +807,7 @@
   background-color: var(--blue-700);
   border: none;
   border-radius: 50px;
-  padding: 5px 15px;
+  padding: 0 15px;
   color: var(--blue-100);
   transition: 0.5s ease;
   cursor: pointer;
@@ -837,4 +852,25 @@
   width: 100%;
   height: 85%;
   background-color: var(--blue-800);
+}
+
+/********************************* [ Watch Full Screen ] *********************************/
+
+.full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }

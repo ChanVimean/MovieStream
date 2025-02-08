@@ -1,4 +1,7 @@
 import useState from '../utils/useState.js'
+import { showModel } from '../utils/ModelUtils.js'
+import FullScreen from './FullScreen.js'
+import Render from '../utils/Render.js'
 
 const Hero = (movies) => {
   const topRated = movies.sort((a, b) => b.rating - a.rating).slice(0, 5)
@@ -52,6 +55,30 @@ const Hero = (movies) => {
 
   setTimeout(startAutoSlide, 500) // Delay ensures DOM is ready
 
+  setTimeout(() => {
+    // Detail Button
+    document.querySelectorAll(".detail-btn").forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        const movie = extendedMovies[index]
+        showModel(movie)
+      })
+    })
+
+    // 
+    // Watch Now Button
+    document.querySelectorAll(".watch-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const movieData = e.target.closest("button").dataset.movie
+        const movie = JSON.parse(movieData)
+        if (!movie.video) return console.warn("No video URL found")
+        // Redirect to full-screen.html with video URL
+        window.location.href = `fullscreen.html?video=${encodeURIComponent(movie.video)}`
+      })
+    })
+  }, 100)
+  
+  
+
   return `
     <div class="hero">
       <div class="hero-container">
@@ -67,11 +94,11 @@ const Hero = (movies) => {
                 </div>
                 <p class="description">${movie.description}</p>
                 <div class="btn-container">
-                  <button class="watch-btn hero-btn">
+                  <button class="watch-btn hero-btn" data-movie='${JSON.stringify(movie)}'>
                     <i class="fa-solid fa-play"></i>
                     <span>Watch Now</span>
                   </button>
-                  <button class="detail-btn hero-btn">
+                  <button class="detail-btn hero-btn" data-movie='${JSON.stringify(movie)}'>
                     <i class="fa-solid fa-circle-info"></i>
                     <span>Detail</span>
                   </button>
