@@ -17,8 +17,6 @@ const InitializeApp = async () => {
       return
     }
 
-    //* Render App
-
     //* Navigation
     Render('navbar', NavBar())
 
@@ -81,9 +79,7 @@ const InitializeApp = async () => {
     //* Footer
     Render('footer', Footer())
 
-  } catch (error) {
-    console.error("Failed to initialize: ", error)
-  }
+  } catch (error) { console.error("Failed to initialize: ", error) }
 }
 
 InitializeApp()
