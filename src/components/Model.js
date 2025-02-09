@@ -2,26 +2,11 @@
 
 const Model = (movie) => {
 
-  if (
-    !movie ||
-    !movie.title ||
-    !movie.type ||
-    !movie.description ||
-    !movie.genre ||
-    !movie.release ||
-    !movie.rating ||
-    !movie.language ||
-    !movie.cover ||
-    !movie.video ||
-    !movie.duration ||
-    !movie.thumbnail ||
-    !movie.studio ||
-    !movie.country ||
-    !movie.episodes
-  ) {
-    return console.error("Error: Missing required movie properties! ", movie)
-  }
+  if (!movie || !movie.episodes) return console.error("Error: Missing required movie properties! ", movie)
 
+  let currentVideo = movie.video
+
+  const updateVideo = (newLink) => document.getElementById('video-frame').src = newLink
 
   return `
     <div class="model" id="model-overlay">
@@ -32,7 +17,7 @@ const Model = (movie) => {
 
         <section class="top-row">
           <div class="content">
-            <iframe src="${movie.video}"
+            <iframe id="video-frame" src="${currentVideo}"
               frameborder="0"
               allowfullscreen
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
@@ -45,9 +30,13 @@ const Model = (movie) => {
               <h2 class="inactive">Season 3</h2>
             </header>
             <main>
-              <div class="episode">
-                <a href="#">Episode 1 | Title here</a>
-              </div>
+              ${movie.episodes.map(ep => 
+                `<div class="episode">
+                  <a href="${ep.link}">
+                    Episode ${ep.episode} | ${movie.title}
+                  </a>
+                </div>`
+              ).join('')}
             </main>
           </div>
         </section>
