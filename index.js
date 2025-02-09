@@ -45,7 +45,7 @@ const InitializeApp = async () => {
     Render('topDonghua', Carousel(topDonhua, "Top Donhua"))
 
     // Action
-    const genreAction = FilterItems(movieList, 'genre', ['Action'])
+    const genreAction = FilterItems(movieList, 'genre', ['Action', 'Superhero'])
     Render('action', Carousel(genreAction, 'Action'))
 
     // MartialArts
