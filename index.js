@@ -28,7 +28,7 @@ const InitializeApp = async () => {
     Render('trending', Trending(movieList, "Trending", 15))
 
     // New Releases
-    const newRelease = FilterItems(movieList, 'release', 2020)
+    const newRelease = FilterItems(movieList, 'release', { min: 2020, max: new Date().getFullYear() })
     Render('newReleases', Carousel(newRelease, "New Releases"))
 
     // Continue

@@ -3,11 +3,17 @@ const FilterItems = (apiArray, key, value) => {
   if (value === null) return apiArray
 
   const isArray = Array.isArray(value)
+  const isRange = typeof value === "object" && value.min !== undefined && value.max !== undefined
 
   // Filter based on key and value
   return apiArray.filter(item => {
     // If the key doesn't exist in the item, ignore it
     if (!item.hasOwnProperty(key)) return false
+
+    if (isRange) {
+      // If it's a range (like release year)
+      return item[key] >= value.min && item[key] <= value.max
+    }
 
     if (isArray) {
       if (Array.isArray(item[key])) {
