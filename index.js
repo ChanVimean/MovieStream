@@ -42,7 +42,7 @@ const InitializeApp = async () => {
     
     // Top Donghua
     const topDonhua = FilterItems(movieList, 'type', ['Donghua'])
-    Render('topDonghua', Carousel(topDonhua, "Top Donhua"))
+    Render('topDonghua', Carousel(topDonhua, "Top Donghua"))
 
     // Action
     const genreAction = FilterItems(movieList, 'genre', ['Action', 'Superhero'])
