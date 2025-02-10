@@ -31,9 +31,6 @@ const InitializeApp = async () => {
     const newRelease = FilterItems(movieList, 'release', { min: 2020, max: new Date().getFullYear() })
     Render('newReleases', Carousel(newRelease, "New Releases"))
 
-    // Continue
-    // Up Coming
-
     // Top Anime
     const topAnime = FilterItems(movieList, 'type', ['Anime'])
     Render('topAnime', Carousel(topAnime, "Top Anime"))
@@ -56,10 +53,6 @@ const InitializeApp = async () => {
     const genreComedy = FilterItems(movieList, 'genre', ['Comedy'])
     Render('comedy', Carousel(genreComedy, 'Comedy'))
 
-    // Romance
-    const genreRomance = FilterItems(movieList, 'genre', ['Romance'])
-    Render('romance', Carousel(genreRomance, 'Romance'))
-
     // Fantasy
     const genreFantasy = FilterItems(movieList, 'genre', ['Fantasy'])
     Render('fantasy', Carousel(genreFantasy, 'Fantasy'))
@@ -72,9 +65,13 @@ const InitializeApp = async () => {
     const genreAdventure = FilterItems(movieList, 'genre', ['Adventure'])
     Render('adventure', Carousel(genreAdventure, 'Adventure'))
 
-    // Drama & Thriller
-    const genreDramaThriller = FilterItems(movieList, 'genre', ['Drama', 'Thiller'])
-    Render('dramaThriller', Carousel(genreDramaThriller, 'Drama & Thriller'))
+    // Drama & Romance
+    const genreDramaRomance = FilterItems(movieList, 'genre', ['Drama', 'Romance'])
+    Render('dramaRomance', Carousel(genreDramaRomance, 'Drama & Romance'))
+
+    // Horror & Thriller
+    const genreShounenLife = FilterItems(movieList, 'genre', ['Slice of Life', 'Shounen'])
+    Render('shounenLife', Carousel(genreShounenLife, 'Slice of Life & Shounen'))
 
     //* Footer
     Render('footer', Footer())
